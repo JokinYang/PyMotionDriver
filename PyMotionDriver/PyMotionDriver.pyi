@@ -1,0 +1,133 @@
+from typing import overload, Any
+
+DMP_FEATURE_6X_LP_QUAT: int
+DMP_FEATURE_ANDROID_ORIENT: int
+DMP_FEATURE_GYRO_CAL: int
+DMP_FEATURE_LP_QUAT: int
+DMP_FEATURE_PEDOMETER: int
+DMP_FEATURE_SEND_CAL_GYRO: int
+DMP_FEATURE_SEND_RAW_ACCEL: int
+DMP_FEATURE_SEND_RAW_GYRO: int
+DMP_FEATURE_TAP: int
+INV_XYZ_ACCEL: int
+INV_XYZ_COMPASS: int
+INV_XYZ_GYRO: int
+INV_X_GYRO: int
+INV_Y_GYRO: int
+INV_Z_GYRO: int
+
+
+def setup(sensors: int = ..., gyro_fsr: int = ..., accel_fsr: int = ..., dmp_feature: int = ...,
+		  dmp_fifo_rate: int = ...) -> str: ...
+
+
+def update(*args, **kwargs) -> Any: ...
+
+
+class Quaternion:
+	@overload
+	def __init__(self) -> None: ...
+
+	@overload
+	def __init__(self, arg0: float, arg1: float, arg2: float, arg3: float) -> None: ...
+
+	@overload
+	def __init__(*args, **kwargs) -> Any: ...
+
+	def getConjugate(self) -> Quaternion: ...
+
+	def getMagnitude(self) -> float: ...
+
+	def getNormalized(self) -> Quaternion: ...
+
+	def getProduct(self, arg0: Quaternion) -> Quaternion: ...
+
+	def normalize(self) -> None: ...
+
+	@property
+	def w(self) -> float: ...
+
+	@w.setter
+	def w(self, val: float) -> None: ...
+
+	@property
+	def x(self) -> float: ...
+
+	@x.setter
+	def x(self, val: float) -> None: ...
+
+	@property
+	def y(self) -> float: ...
+
+	@y.setter
+	def y(self, val: float) -> None: ...
+
+	@property
+	def z(self) -> float: ...
+
+	@z.setter
+	def z(self, val: float) -> None: ...
+
+
+class Result:
+	def __init__(self, *args, **kwargs) -> None: ...
+
+	@property
+	def accel(self) -> VectorFloat: ...
+
+	@property
+	def compass(self) -> VectorFloat: ...
+
+	@property
+	def gravity(self) -> VectorFloat: ...
+
+	@property
+	def gyro(self) -> VectorFloat: ...
+
+	@property
+	def quaternion(self) -> Quaternion: ...
+
+	@property
+	def temp(self) -> float: ...
+
+	@property
+	def ypr(self) -> VectorFloat: ...
+
+
+class VectorFloat:
+	@overload
+	def __init__(self) -> None: ...
+
+	@overload
+	def __init__(self, arg0: float, arg1: float, arg2: float) -> None: ...
+
+	@overload
+	def __init__(*args, **kwargs) -> Any: ...
+
+	def getMagnitude(self) -> float: ...
+
+	def getNormalized(self) -> VectorFloat: ...
+
+	def getRotated(self, arg0: Quaternion) -> VectorFloat: ...
+
+	def normalize(self) -> None: ...
+
+	def rotate(self, arg0: Quaternion) -> None: ...
+
+	@property
+	def x(self) -> float: ...
+
+	@x.setter
+	def x(self, val: float) -> None: ...
+
+	@property
+	def y(self) -> float: ...
+
+	@y.setter
+	def y(self, val: float) -> None: ...
+
+	@property
+	def z(self) -> float: ...
+
+	@z.setter
+	def z(self, val: float) -> None: ...
